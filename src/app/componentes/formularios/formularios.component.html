@@ -1,0 +1,22 @@
+<!--
+Definição de template driven-form
+    para que o formulario possa "controlar" aqui que esta prestes a acontecer será necessário fazer uso de alguns recursos já conhecidos. A diretiva ngModel- vai aparecer num contexto um pouquinho diferente do two way binding.
+    A diretiva - surge pela 1ª vez - ngForm - ao ser usada - indica que todas as ações que ocorrerem, a partir do formulario, serão controladas por ele mesmo; então, a diretiva determina que o formulario pode controlar seu comportamento 
+-->
+
+<div>
+    <h2>{{ tituloComp }}</h2>
+
+    <form>
+        <input type = "text" name = "nome" placeholder = "Informe seu nome"  />
+        <br />
+
+        <input type = "email" name = "email" placeholder="Informe seu emiail" />
+        <br />
+
+        <input type = "password" name = "password" placeholder = "Informe sua senha" />
+        <br />
+
+        <input type="submit" value="Enviar" />
+    </form>
+</div>
