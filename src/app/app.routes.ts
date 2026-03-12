@@ -8,6 +8,7 @@ import { TwoWayComponent } from './componentes/two-way/two-way.component';
 import { DirIfComponent } from './componentes/dir-if/dir-if.component';
 import { DirForComponent } from './componentes/dir-for/dir-for.component';
 import { PipesComponent } from './componentes/pipes/pipes.component';
+import { FormulariosComponent } from './componentes/formularios/formularios.component';
 
 
 export const routes: Routes = [
@@ -20,5 +21,6 @@ export const routes: Routes = [
     {path: 'two-way', component: TwoWayComponent},
     {path: 'dir-if', component: DirIfComponent},
     {path: 'dir-for', component: DirForComponent},
-    {path: 'pipes', component: PipesComponent}
+    {path: 'pipes', component: PipesComponent},
+    {path: 'formulario', component: FormulariosComponent}
 ];

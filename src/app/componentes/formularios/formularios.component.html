@@ -7,14 +7,26 @@ Definição de template driven-form
 <div>
     <h2>{{ tituloComp }}</h2>
 
-    <form>
-        <input type = "text" name = "nome" placeholder = "Informe seu nome"  />
+    <form #capturaDados = "ngForm" (ngSubmit) = "dadosRecebidos(capturaDados.value)"  > <!-- aqui, a diretiva ngSubmit ele "trabalha" para que os dados que serão capturados pelo formulário possam ser submtidos para qualquer outro contexto da aplicação; 
+        dadosRecebidos(): função/método que vai reecber os dados, aqui, capturados e manipula-los
+        capturaDados.value: "Aqui temos mágica!" -> em função da variavel de indentificação do form - que detém todos os valores - podemos "extrair" do formulario um objeot json e enviar para a função- fazendo do recurso value 
+        -->
+        <input type = "text" name = "nome" placeholder = "Informe seu nome" ngModel />
+        <!-- a diretiva ngModel possui o mesmo proposito já observado no two-way binding : ela - diretiva ngModel, a partir do recurso de observação de alteração de estado - fica  atento para a ocorrencia/disparo de algum evento quando e se o usuario interagir com a view do componente; ou seja, simplesmente nos auxila a capturar os dados que o usuario inserir no input 
+        
+        {
+            nome: 'valor',
+            email: 'valor',
+            senha: 'valor'
+        }
+        
+        -->
         <br />
 
-        <input type = "email" name = "email" placeholder="Informe seu emiail" />
+        <input type = "email" name = "email" placeholder="Informe seu email" ngModel />
         <br />
 
-        <input type = "password" name = "password" placeholder = "Informe sua senha" />
+        <input type = "password" name = "password" placeholder = "Informe sua senha" ngModel />
         <br />
 
         <input type="submit" value="Enviar" />
