@@ -1,0 +1,27 @@
+<div>
+    <h2>{{ tituloComp }}</h2>
+
+    <!-- definição da table-->
+     <table class="bordaTabela">
+        <thead>
+            @for(n of nomeandoColunas; track $index){
+                <tr>
+                    <th>{{ n.coluna1 }}</th>
+                    <th>{{ n.coluna2 }}</th>
+                    <th>{{ n.coluna3 }}</th>
+                    <th>{{ n.coluna4 }}</th>
+                </tr>
+            }
+        </thead>
+        <tbody>
+            @for(l of listaDeFilmes; track $index){
+                <tr>
+                    <td>{{ l.titulo }}</td>
+                    <td>{{ l.direcao }}</td>
+                    <td>{{ l.elenco }}</td>
+                    <td>{{ l.anoLancamento }}</td>
+                </tr>
+            }
+        </tbody>
+     </table>
+</div>
