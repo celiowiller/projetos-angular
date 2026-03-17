@@ -3,13 +3,13 @@ import { Produto } from "../models/produto";
 import { LISTA_PRODUTOS } from "../dados/fonteDados";
 
 
-/*import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 // não é o decorator @Injectable que define o novo "papel" desta classe - ser um service
 // este decorator - não é ele, necessariamente, que "faz" o serivce funfar!!!
 @Injectable({
   providedIn: 'root'
-})*/
+})
 
 
 export class ProdutoService {
