@@ -110,4 +110,27 @@ export class ProdutoService {
         )
 
       }
+
+       // 4º tarefa assincrona: UPDATE - atualizar/alterar um registro - devidamente armazenado na base - desde que seja selecionado pelo seu elemento identificador
+       atualizar(id: number, produto: Partial<Produto>){
+        return this.http.put<Produto>(`${this.apiURL}/${id}`, produto)
+        .pipe(
+          tap((produtoAtualizado) => {
+          // aqui, no pipe, estamos atualizando apenas o item que foi alterado - dentro do signal
+          this._produtos.update((lista) => lista.map((p) => (p.idProduto === id ? produtoAtualizado : p)))
+        }))
+      }
+
+       // 5º tarefa assincrona: DELETE - excluir o registro 
+       excluir(id: number){
+        return this.http.delete<void>(
+          `${this.apiURL}/${id}`
+        )
+        .pipe(
+          tap(() => {
+          // removendo o item do signal para que seja possivel "refletir" na interface do usuario, de forma dinamica
+          this._produtos.update((lista) => lista.filter((p) => p.idProduto !== id))
+          })
+        )
+       } 
 }
