@@ -1,5 +1,41 @@
 {
     "usuarios":[],
-    "produtos":[],
+    "produtos":[
+            {
+                "idProduto": 1,
+                "nomeProduto": "Café Espresso",
+                "precoProduto": 8.50,
+                "imagemProduto": "https://images.unsplash.com/photo-1511920170033-f8396924c348",
+                "descricao": "Clássico espresso intenso, preparado com grãos selecionados."
+            },
+            {
+                "idProduto": 2,
+                "nomeProduto": "Cappuccino Cremoso",
+                "precoProduto": 12.00,
+                "imagemProduto": "https://images.unsplash.com/photo-1529042410759-befb1204b468",
+                "descricao": "Cappuccino equilibrado com espuma cremosa e aroma marcante."
+            },
+            {
+                "idProduto": 3,
+                "nomeProduto": "Latte com Baunilha",
+                "precoProduto": 14.90,
+                "imagemProduto": "https://plus.unsplash.com/premium_photo-1723759448747-1d174225e61f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D%22,",
+                "descricao": "Latte suave adoçado com essência natural de baunilha."
+            },
+            {
+                "idProduto": 4,
+                "nomeProduto": "Croissant Manteigado",
+                "precoProduto": 9.75,
+                "imagemProduto": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e",
+                "descricao": "Croissant francês leve e folhado, perfeito para acompanhar seu café."
+            },
+            {
+                "idProduto": 5,
+                "nomeProduto": "Bolo de Cenoura com Chocolate",
+                "precoProduto": 7.90,
+                "imagemProduto": "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af",
+                "descricao": "Tradicional bolo de cenoura coberto com chocolate cremoso."
+            }
+],
     "pedidos": []
 }

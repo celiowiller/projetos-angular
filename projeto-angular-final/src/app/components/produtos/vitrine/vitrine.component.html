@@ -1,1 +1,28 @@
-<p>vitrine works!</p>
+<div class = "container">
+    <h1>{{ tituloComp }}</h1>
+
+    <div class="grid-layout">
+        <!-- uso da diretiva @for para iterar sobre todos os produtos encontrados na base-->
+         @for(item of listaProdutos(); track item.idProduto){
+            <mat-card class="cafe-card">
+                <img mat-card-image [src] = "item.imagemProduto" [alt] = "item.nomeProduto" />
+                <mat-card-content>
+                    <h2>{{ item.nomeProduto }}</h2>
+                    <p class="description">{{ item.descricao }}</p>
+                    <p class="price">{{ item.precoProduto | currency: 'BRL'}}</p>
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <button mat-raised-button color="accent" (click) = "adicionarAoCarrinho(item)">
+                        <mat-icon>shopping_cart</mat-icon>
+                        ADICIONAR
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+         }@empty{
+            <div>
+                <p>Moendo os grãos... aguarde!</p>
+            </div>
+         }
+    </div>
+</div>
