@@ -5,13 +5,22 @@ import { Produto } from '../models/produto';
   providedIn: 'root'
 })
 export class CartService {
+  /// persistir no localStorage
+  private STORAGE_KEY = 'carrinho'
   // 1. definição do signal
   private _itens = signal<Produto[]>([])
 
   // 2. definir o elemento reativo de leitura
   itens = computed(() => this._itens())
 
-  constructor() { }
+  constructor() {
+    const dados = localStorage.getItem(this.STORAGE_KEY)
+
+    if (dados) {
+      this._itens.set(JSON.parse(dados))
+      console.log('Carrinho recuperado:', this._itens())
+    }
+   }
 
   // 3. calcular a quantidade de total de itens no carrinho
   quantidadeItens = computed(() => this._itens().length)
@@ -31,12 +40,25 @@ export class CartService {
   // 5. adicionar um produto ao carrinho
   adicionar(produto: Produto){
     // para adicionar o produto ao carrinho precisamos usar o método update para criar lista como o novo item/elemento
-    this._itens.update(lista => [...lista, produto])
+    this._itens.update(lista => {
+      const novaLista = [...lista, produto]
+       // salva sempre que muda
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(novaLista));
+
+      return novaLista;
+    })
+    
   }
 
   // 6. remover um produto, do carrinho, pelo seu elemento identificador - ID
   remover(idProduto: number){
-    this._itens.update(lista => lista.filter(p => p.idProduto !== idProduto))
+    this._itens.update(lista => {
+      const novaLista = lista.filter(p => p.idProduto !== idProduto)
+
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(novaLista))
+
+      return novaLista
+    })
   }
 
   // 7. remover apenas uma unidade de um produto especifico 
@@ -49,6 +71,8 @@ export class CartService {
           const novaLista = [...lista]
           novaLista.splice(index, 1) // essa é a ferramenta de "corte" - o 1º parametro indica onde devemos começar cortar:  o valor do parametro index
           // o 2º parametro diz quantos itens devemos remover 
+
+          localStorage.setItem(this.STORAGE_KEY, JSON.stringify(novaLista))
           return novaLista
         } 
         return lista
@@ -60,6 +84,7 @@ export class CartService {
   // 8. limpando, quando necessario, o carrinho
   limparCarrinho(){
     this._itens.set([])
+     localStorage.removeItem(this.STORAGE_KEY)
   }
 
 }

@@ -8,15 +8,24 @@ import { tap, map } from 'rxjs' // por que map?
   providedIn: 'root'
 })
 export class AuthService {
-
+  private STORAGE_KEY = 'usuario_logado'
   // ====== 1º bloco =======
   private http = inject(HttpClient)
   private apiURL = 'http://localhost:3000/usuarios'
-
+  // ¨*******
+  // Criamos uma função auxiliar para ler o "disco"
+  // leitura inicial
+  usuarioSalvo = localStorage.getItem(this.STORAGE_KEY)
   // definição do signal
+
   private _usuarioLogado = signal<Cadastro | null>(null)
 
-  // definição do computed
+  //****Iniciamos o Signal com o valor que já está lá (ou null)
+  /*private _usuarioLogado = signal<Cadastro | null>(
+    this.usuarioSalvo ? JSON.parse(this.usuarioSalvo) : null
+  )*/
+
+   // definição do computed
   usuarioLogado = computed(() => this._usuarioLogado())
 
   // definir uma verificação de nivel de usuario
@@ -34,7 +43,16 @@ export class AuthService {
   // acima, estamos observando o status de nivel de usuario; se ele é um ADMIN com privilegio de acesso total ao sistema
   // usuarioLogado()?: o ponto de interrogação é o operador optional/optional chaining; aqui, o operador obervado se o usuario esta logado - se existe o objeto - se for considerado null ou undefined o codigo não "quebra" e retorna um undefined
 
-  constructor() { }
+  constructor() { 
+    // ****. Ao iniciar o serviço, tentamos recuperar o usuário salvo
+    const dadosSalvos = localStorage.getItem(this.STORAGE_KEY);
+
+      if (dadosSalvos) {
+        const usuario = JSON.parse(dadosSalvos);
+        console.log('Recuperado do localStorage:', usuario);
+        this._usuarioLogado.set(usuario);
+      }
+  }
 
   // ====== 2º bloco ========
   // definir a função de cadastro de usuario
@@ -55,10 +73,16 @@ export class AuthService {
     .pipe(
       map(usuarios => usuarios[0] || null),
       tap((usuario) => {
-        if(usuario) { this._usuarioLogado.set(usuario)}
+        if(usuario) {
+          console.log('Gravando usuário no Signal:', usuario); 
+          this._usuarioLogado.set(usuario)
+          // adicionando o usuario no localStorage
+          localStorage.setItem(this.STORAGE_KEY, JSON.stringify(usuario));
+        }
       })
     )
   }
+  
 
   /*
      acima, estamos fazendo uma busca "filtrada": porque estamos observando se o usuario consta na base
@@ -68,11 +92,15 @@ export class AuthService {
 
      // definir a função/método logout
      logout(){
-      this._usuarioLogado.set(null)
+      this._usuarioLogado.set(null);
+      localStorage.removeItem(this.STORAGE_KEY);
+      
      }
 
     // excluir um usuario
     excluirUsuario(id: number){
       return this.http.delete<void>(`${this.apiURL}/${id}`)
     }
+
+    
 }

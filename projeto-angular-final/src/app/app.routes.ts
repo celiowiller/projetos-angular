@@ -11,6 +11,16 @@ export const routes: Routes = [
         loadComponent: () => import('./components/produtos/vitrine/vitrine.component')
         .then(m => m.VitrineComponent)
     },
+    {
+        path: 'cadastro',
+        loadComponent: () => import('./components/auth/cadastro/cadastro.component')
+        .then(m => m.CadastroComponent)
+    },
+     {
+        path: 'login',
+        loadComponent: () => import('./components/auth/login/login.component')
+        .then(m => m.LoginComponent)
+    },
 
     // ----- ROTAS DE NIVEL USER - USUARIO COMUM ----
     {

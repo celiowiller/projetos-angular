@@ -1,0 +1,22 @@
+.checkout-container {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.total-section {
+  margin-top: 20px;
+  text-align: right;
+  h3 span {
+    color: #2e7d32;
+    font-size: 1.5rem;
+  }
+}
+
+.empty-msg {
+  padding: 20px;
+  text-align: center;
+  color: #888;
+}
+
+.full-width { width: 100%; }

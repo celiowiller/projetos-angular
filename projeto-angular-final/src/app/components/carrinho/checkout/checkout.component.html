@@ -1,1 +1,43 @@
-<p>checkout works!</p>
+<div class="checkout-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{ tituloComp }}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <mat-list>
+                @for(item of itensNoCarrinho(); track $index){
+                    <mat-list-item>
+                        <mat-icon matListItemIcon>coffee</mat-icon>
+                        <div matListItemTitle>{{ item.nomeProduto }}</div>
+                        <div matListItemLine>{{ item.precoProduto | currency: 'BRL' }}</div>
+                        <button 
+                            mat-icon-button
+                            matListItemMeta 
+                            (click) = "cartService.removerUmaUnidade(item.idProduto)"
+                        >
+                            <mat-icon color="warn">remove_circle_outline</mat-icon>
+                        </button>
+                    </mat-list-item>
+                }@empty{
+                    <p class="empty-msg">Seu carrinho não tem produtos</p>
+                }
+            </mat-list>
+
+            <mat-divider></mat-divider>
+
+            <div class="total-section">
+                <h3>Total: <span>{{ total() | currency: 'BRL'}}</span></h3>
+            </div>
+        </mat-card-content>
+
+        <mat-card-actions>
+            <button mat-button routerLink="/cardapio">Continuar comprando</button>
+            <button mat-raised-button color="primary" 
+                [disabled] = "itensNoCarrinho().length === 0" (click) = "finalizarCompra()"
+            >
+                FINALIZAR PEDIDO
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>

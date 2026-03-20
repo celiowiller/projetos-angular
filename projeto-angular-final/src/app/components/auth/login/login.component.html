@@ -1,0 +1,42 @@
+<div class="login-container">
+    <mat-card class="login-card">
+        <mat-card-header>
+            <mat-card-title>{{ tituloComp }}</mat-card-title>
+            <mat-card-subtitle>{{ subtituloComp }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <form [formGroup] = "form" (ngSubmit) = "entrar()">
+            <mat-card-content>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput formControlName="email" placeholder="Ex: mail@mail.com" />
+                    <mat-icon matSuffix>email</mat-icon>
+
+                    @if(form.get('email')?.hasError('required')){
+                        <mat-error >Email é obritorio!</mat-error>
+                    }@else if(form.get('email')?.hasError('email')){
+                        <mat-error >Email é obritorio!</mat-error>
+                    }
+                    <!--<mat-error *ngIf =  >O email é obrigatorio</mat-error>-->
+                </mat-form-field>
+
+                 <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Senha</mat-label>
+                    <input type="password" matInput formControlName="password" placeholder="Ex: CD#45@!f" />
+                    <mat-icon matSuffix>lock</mat-icon>
+                    <mat-hint>A senha de conter, no minimo, 6 caracteres</mat-hint>
+                    @if(form.get('password')?.hasError('required')){
+                        <mat-error >A senha é obrigatoria</mat-error>
+                    }
+                    <!--<mat-error *ngIf =  >O nome é obrigatorio</mat-error>-->
+                </mat-form-field>               
+
+            </mat-card-content>
+            <mat-card-actions align = "end">
+                <button mat-button type="button" routerLink="/cadastro">NÃO TENHO CONTA</button>
+                <button mat-raised-button color="primary" [disabled]="form.invalid" type="submit">ENTRAR</button>
+            </mat-card-actions>
+        </form>
+    </mat-card>
+</div>
