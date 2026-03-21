@@ -11,6 +11,8 @@ import { MatTableModule } from '@angular/material/table'; // recurso de design d
 import { MatSnackBarModule } from '@angular/material/snack-bar'; // barra de feedback visual
 import { MatSidenavModule } from '@angular/material/sidenav'; // recurso para menus - lateral/retratil
 import { MatListModule } from '@angular/material/list'; // recurso para definir estruturas de lista
+import { MatDatepickerModule } from '@angular/material/datepicker';// para datas
+import { MatNativeDateModule } from '@angular/material/core'; // para datas
 
 // precisamos "expor" estes recursos para os outros elementos do projeto
 export const MaterialModule = [
@@ -23,7 +25,9 @@ export const MaterialModule = [
   MatTableModule,
   MatSnackBarModule,
   MatSidenavModule,
-  MatListModule   
+  MatListModule,
+  MatDatepickerModule,
+  MatNativeDateModule   
 ]
 
 

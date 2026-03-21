@@ -5,7 +5,7 @@ export interface ItemPedido extends Produto{
 }
 
 export interface Pedido {
-    idPedido?: number
+    id?: number
     usuarioId: number
     //dataPedido: Date
     dataPedido: string // no caso do usao de elementos strign para o formato de data pode ser adequado em função  do armazenamento pois, posteriormente podemos usar o pipe para a transformação em data

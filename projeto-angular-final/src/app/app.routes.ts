@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './guards/auth.guard';
+import { adminGuard, authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     // --- nossas rotas para qualquer usuario ---
@@ -31,7 +31,24 @@ export const routes: Routes = [
                 path: 'checkout',
                 loadComponent: () => import('./components/carrinho/checkout/checkout.component')
                 .then(m => m.CheckoutComponent)
-            }
+            },
+            { 
+                path: 'meus-pedidos', 
+                loadComponent: () => import('./components/pedidos/historico/historico.component').then(m => m.HistoricoComponent) 
+             }
         ]
-    }
+    },
+
+    // --- ROTAS NÍVEL 2: ADMIN (Requer Login + Role ADMIN) ---
+  {
+    path: 'admin',
+    canActivate: [adminGuard],
+    children: [
+      { 
+        path: 'painel', 
+        loadComponent: () => import('./components/admin/dashboard/dashboard.component').then(m => m.DashboardComponent) 
+      },
+    ]
+     
+ }
 ];

@@ -10,7 +10,7 @@ import { Produto } from '../../../models/produto';
 
 @Component({
   selector: 'app-vitrine',
-  imports: [CommonModule, MaterialModule],
+  imports: [CommonModule, ...MaterialModule],
   templateUrl: './vitrine.component.html',
   styleUrl: './vitrine.component.css'
 })

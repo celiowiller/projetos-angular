@@ -15,3 +15,10 @@ export const authGuard = () => {
 
   return router.parseUrl('/login');
 }
+
+export const adminGuard = () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+  // Só permite se for autenticado E admin
+  return (auth.isAutenticado() && auth.isAdmin()) ? true : router.parseUrl('/home');
+}

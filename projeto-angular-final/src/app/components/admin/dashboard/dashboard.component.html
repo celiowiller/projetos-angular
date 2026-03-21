@@ -1,0 +1,98 @@
+<div class="container">
+
+  <h2>{{ tituloComp }}</h2>
+
+  <!-- FILTROS -->
+ <div class="filtros">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Data início</mat-label>
+    <input matInput [matDatepicker]="pickerInicio"
+           (dateChange)="onDataInicioChange($event.value)">
+    <mat-datepicker-toggle matIconSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+    <mat-datepicker #pickerInicio></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Data fim</mat-label>
+    <input matInput [matDatepicker]="pickerFim"
+           (dateChange)="onDataFimChange($event.value)">
+    <mat-datepicker-toggle matIconSuffix [for]="pickerFim"></mat-datepicker-toggle>
+    <mat-datepicker #pickerFim></mat-datepicker>
+  </mat-form-field>
+
+</div>
+
+  <!-- KPIs -->
+  <div class="cards">
+
+    <mat-card class="kpi-card">
+        <mat-card-content>
+            <p>Pedidos</p>
+            <h2>{{ totalPedidos() }}</h2>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="kpi-card">
+        <mat-card-content>
+            <p>Faturamento</p>
+            <h2>{{ faturamento() | currency:'BRL' }}</h2>
+        </mat-card-content>
+    </mat-card>
+
+  </div>
+
+  <!-- GRÁFICO -->
+  <div class="grafico">
+    <canvas id="graficoPedidos"></canvas>
+  </div>
+
+  <!-- LISTA -->
+  <h3>Pedidos</h3>
+
+  @if (pedidosFiltrados().length === 0) {
+    <p class="empty-msg">Nenhum pedido encontrado no período.</p>
+  }
+
+  @for (pedido of pedidosFiltrados(); track pedido.id) {
+
+    <mat-card class="pedido-card">
+
+      <mat-card-header>
+        <mat-card-title>
+          Pedido #{{ pedido.id }}
+        </mat-card-title>
+
+        <mat-card-subtitle>
+          {{ pedido.dataPedido | date:'dd/MM/yyyy HH:mm' }}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <p>
+          <strong>Total:</strong>
+          {{ pedido.valorTotal | currency:'BRL' }}
+        </p>
+
+        <mat-divider></mat-divider>
+
+        <h4>Itens</h4>
+
+        <mat-list>
+          @for (item of pedido.itens; track item.idProduto) {
+            <mat-list-item>
+              {{ item.nomeProduto }} 
+              (x{{ item.quantidade }}) — 
+              {{ item.precoProduto | currency:'BRL' }}
+            </mat-list-item>
+          }
+        </mat-list>
+
+      </mat-card-content>
+
+    </mat-card>
+
+  }
+
+</div>

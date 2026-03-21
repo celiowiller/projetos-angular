@@ -1,0 +1,55 @@
+<div class="historico-container">
+
+  <h2 class="titulo">📦 Meus Pedidos</h2>
+
+  @if (pedidos().length === 0) {
+    <p class="empty-msg">Você ainda não fez nenhum pedido.</p>
+  }
+
+  @if (pedidos().length > 0) {
+
+    @for (pedido of pedidos(); track pedido.id) {
+
+      <mat-card class="pedido-card">
+
+        <mat-card-header>
+          <mat-card-title>
+            Pedido #{{ pedido.id }}
+          </mat-card-title>
+
+          <mat-card-subtitle>
+            {{ pedido.dataPedido | date:'dd/MM/yyyy HH:mm' }}
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+
+          <p><strong>Total:</strong> 
+            <span class="total">
+              {{ pedido.valorTotal | currency:'BRL' }}
+            </span>
+          </p>
+
+          <mat-divider></mat-divider>
+
+          <h4>Itens</h4>
+
+          <mat-list>
+            @for (item of pedido.itens; track item.idProduto) {
+              <mat-list-item>
+                {{ item.nomeProduto }} 
+                (x{{ item.quantidade }}) — 
+                {{ item.precoProduto | currency:'BRL' }}
+              </mat-list-item>
+            }
+          </mat-list>
+
+        </mat-card-content>
+
+      </mat-card>
+
+    }
+
+  }
+
+</div>

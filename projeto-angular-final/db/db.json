@@ -7,6 +7,14 @@
       "password": "Senha@123",
       "role": "USER",
       "id": 1
+    },
+    {
+      "nome": "Admin",
+      "sobrenome": "Admin",
+      "email": "admin@mail.com",
+      "password": "Senha@123",
+      "role": "ADMIN",
+      "id": 2
     }
   ],
   "produtos": [
@@ -70,6 +78,54 @@
         }
       ],
       "id": 1
+    },
+    {
+      "usuarioId": 1,
+      "dataPedido": "2026-03-21T15:27:21.512Z",
+      "valorTotal": 24.65,
+      "itens": [
+        {
+          "idProduto": 4,
+          "nomeProduto": "Croissant Manteigado",
+          "precoProduto": 9.75,
+          "imagemProduto": "https://images.unsplash.com/photo-1499636136210-6f4ee915583e",
+          "descricao": "Croissant francês leve e folhado, perfeito para acompanhar seu café.",
+          "quantidade": 1
+        },
+        {
+          "idProduto": 3,
+          "nomeProduto": "Latte com Baunilha",
+          "precoProduto": 14.9,
+          "imagemProduto": "https://plus.unsplash.com/premium_photo-1723759448747-1d174225e61f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D%22,",
+          "descricao": "Latte suave adoçado com essência natural de baunilha.",
+          "quantidade": 1
+        }
+      ],
+      "id": 2
+    },
+    {
+      "usuarioId": 1,
+      "dataPedido": "2026-03-21T15:58:18.484Z",
+      "valorTotal": 30.700000000000003,
+      "itens": [
+        {
+          "idProduto": 3,
+          "nomeProduto": "Latte com Baunilha",
+          "precoProduto": 14.9,
+          "imagemProduto": "https://plus.unsplash.com/premium_photo-1723759448747-1d174225e61f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D%22,",
+          "descricao": "Latte suave adoçado com essência natural de baunilha.",
+          "quantidade": 1
+        },
+        {
+          "idProduto": 5,
+          "nomeProduto": "Bolo de Cenoura com Chocolate",
+          "precoProduto": 7.9,
+          "imagemProduto": "https://images.unsplash.com/photo-1505253716362-afaea1d3d1af",
+          "descricao": "Tradicional bolo de cenoura coberto com chocolate cremoso.",
+          "quantidade": 2
+        }
+      ],
+      "id": 3
     }
   ]
 }

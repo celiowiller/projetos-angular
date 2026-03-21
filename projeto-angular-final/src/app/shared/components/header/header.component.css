@@ -1,0 +1,19 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.usuario {
+  margin: 0 10px;
+  font-style: italic;
+}

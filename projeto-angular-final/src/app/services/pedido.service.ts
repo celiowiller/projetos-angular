@@ -22,13 +22,14 @@ export class PedidoService {
   // ----- 2º bloco
   // 1º método: definir a listagem dos pedidos de um usuario logado
   listarMeusPedidos(usuarioId: number){
-    return this.http.get<Pedido[]>(`${this.apiURL}?usuarioId=${usuarioId}`)
-    .pipe(
-      tap(
-        (meusPedidos) => this._pedidos.set(meusPedidos)
-      )
-    )
-  }
+  return this.http.get<Pedido[]>(`${this.apiURL}?usuarioId=${usuarioId}`)
+  .pipe(
+    tap((meusPedidos) => {
+      console.log('Pedidos do usuário:', meusPedidos)
+      this._pedidos.set(meusPedidos)
+    })
+  )
+}
 
   // 2º método: agora, vamos definir o método que cria/salva um novo na base de dados
   salvarPedido(pedido: Pedido){
@@ -38,6 +39,19 @@ export class PedidoService {
         (novoPedido) => { this._pedidos.update((lista) => [...lista, novoPedido])}
       )
     )
+  }
+
+  /**
+   * Nível 2: Admin lista tudo
+   * 3º método: admin poderá acessar todos os pedidos
+   */
+  adminListarTodosPedidos(params?: { usuarioId?: number }) {
+    let url = this.apiURL
+    if (params?.usuarioId) url += `?usuarioId=${params.usuarioId}`
+    
+    return this.http.get<Pedido[]>(url).pipe(
+      tap((todos) => this._pedidos.set(todos))
+    );
   }
 
 }
